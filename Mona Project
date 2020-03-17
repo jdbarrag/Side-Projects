@@ -34,7 +34,7 @@ top10_df
 
 
 
-tens_df = top10_df[['title','artist','top genre','year','pop']]
+tens_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 tens_df.sort_values(by=['pop'])
 tens_df = tens_df[tens_df.year == 2010]
 tens_df = tens_df.iloc[:5]
@@ -44,7 +44,7 @@ tens_df
 
 
 
-eleven_df = top10_df[['title','artist','top genre','year','pop']]
+eleven_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 eleven_df.sort_values(by=['pop'])
 eleven_df = eleven_df[eleven_df.year == 2011]
 eleven_df = eleven_df.iloc[:5]
@@ -53,7 +53,7 @@ eleven_df
 
 
 
-twelve_df = top10_df[['title','artist','top genre','year','pop']]
+twelve_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 twelve_df.sort_values(by=['pop'])
 twelve_df = twelve_df[twelve_df.year == 2012]
 twelve_df = twelve_df.iloc[:5]
@@ -63,7 +63,7 @@ twelve_df
 
 
 
-thirteen_df = top10_df[['title','artist','top genre','year','pop']]
+thirteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 thirteen_df.sort_values(by=['pop'])
 thirteen_df = thirteen_df[thirteen_df.year == 2013]
 thirteen_df = thirteen_df.iloc[:5]
@@ -72,7 +72,7 @@ thirteen_df
 
 
 
-fourteen_df = top10_df[['title','artist','top genre','year','pop']]
+fourteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 fourteen_df.sort_values(by=['pop'])
 fourteen_df = fourteen_df[fourteen_df.year == 2014]
 fourteen_df = fourteen_df.iloc[:5]
@@ -82,7 +82,7 @@ fourteen_df
 
 
 
-fifteen_df = top10_df[['title','artist','top genre','year','pop']]
+fifteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 fifteen_df.sort_values(by=['pop'])
 fifteen_df = fifteen_df[fifteen_df.year == 2015]
 fifteen_df = fifteen_df.iloc[:5]
@@ -92,7 +92,7 @@ fifteen_df
 
 
 
-sixteen_df = top10_df[['title','artist','top genre','year','pop']]
+sixteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 sixteen_df.sort_values(by=['pop'])
 sixteen_df = sixteen_df[sixteen_df.year == 2016]
 sixteen_df = sixteen_df.iloc[:5]
@@ -102,7 +102,7 @@ sixteen_df
 
 
 
-seventeen_df = top10_df[['title','artist','top genre','year','pop']]
+seventeen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 seventeen_df.sort_values(by=['pop'])
 seventeen_df = seventeen_df[seventeen_df.year == 2017]
 seventeen_df = seventeen_df.iloc[:5]
@@ -111,7 +111,7 @@ seventeen_df
 
 
 
-eighteen_df = top10_df[['title','artist','top genre','year','pop']]
+eighteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 eighteen_df.sort_values(by=['pop'])
 eighteen_df = eighteen_df[eighteen_df.year == 2018]
 eighteen_df = eighteen_df.iloc[:5]
@@ -121,7 +121,7 @@ eighteen_df
 
 
 
-nineteen_df = top10_df[['title','artist','top genre','year','pop']]
+nineteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 nineteen_df.sort_values(by=['pop'])
 nineteen_df = nineteen_df[nineteen_df.year == 2019]
 nineteen_df = nineteen_df.iloc[:5]
@@ -213,3 +213,27 @@ a1, b1 = np.polyfit(top10_df['dnce'],top10_df['pop'], 1)
 
 
 top10_df.corr(method='pearson')
+
+top10_df['val'].replace(' ', '')
+top10_df['pop'].replace(' ', '')
+
+temp_df = top10_df[['val','pop']]
+
+temp_df
+
+
+kmeans = KMeans(n_clusters=3).fit(temp_df)
+centroids = kmeans.cluster_centers_
+print(centroids)
+
+plt.scatter(temp_df['val'], temp_df['pop'], c= kmeans.labels_.astype(float), s=50, alpha=0.5)
+plt.scatter(centroids[:, 0], centroids[:, 1], c='red', s=50)
+
+
+ax = plt.gca()
+
+master_df.plot(kind='line',x='top genre',y='val', color='blue',ax=ax)
+master_df.plot(kind='line',x='top genre',y='acous', color='red',ax=ax)
+master_df.plot(kind='line',x='top genre',y='pop', color='green',ax=ax)
+
+plt.show()
