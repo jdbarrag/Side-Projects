@@ -33,7 +33,7 @@ top10_df.columns
 top10_df
 
 
-
+#Creates individual dataframe to house data for 2010s
 tens_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 tens_df.sort_values(by=['pop'])
 tens_df = tens_df[tens_df.year == 2010]
@@ -62,7 +62,7 @@ twelve_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 thirteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 thirteen_df.sort_values(by=['pop'])
 thirteen_df = thirteen_df[thirteen_df.year == 2013]
@@ -71,7 +71,7 @@ thirteen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 fourteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 fourteen_df.sort_values(by=['pop'])
 fourteen_df = fourteen_df[fourteen_df.year == 2014]
@@ -81,7 +81,7 @@ fourteen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 fifteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 fifteen_df.sort_values(by=['pop'])
 fifteen_df = fifteen_df[fifteen_df.year == 2015]
@@ -91,7 +91,7 @@ fifteen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 sixteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 sixteen_df.sort_values(by=['pop'])
 sixteen_df = sixteen_df[sixteen_df.year == 2016]
@@ -101,7 +101,7 @@ sixteen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 seventeen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 seventeen_df.sort_values(by=['pop'])
 seventeen_df = seventeen_df[seventeen_df.year == 2017]
@@ -110,7 +110,7 @@ seventeen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 eighteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 eighteen_df.sort_values(by=['pop'])
 eighteen_df = eighteen_df[eighteen_df.year == 2018]
@@ -120,7 +120,7 @@ eighteen_df
 
 
 
-
+#Creates individual dataframe to house data for 2010s
 nineteen_df = top10_df[['title','artist','top genre','year','val','acous','pop']]
 nineteen_df.sort_values(by=['pop'])
 nineteen_df = nineteen_df[nineteen_df.year == 2019]
