@@ -1,0 +1,215 @@
+#import relevant packages
+get_ipython().run_line_magic('matplotlib', 'inline')
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pandas.plotting import scatter_matrix
+
+
+
+
+# upload the csv file into  dataframe
+top10_df = pd.read_csv('top10s.csv', encoding='latin1')
+
+top10_df
+
+
+
+#cleaning the data set to keep only relavent information 
+del top10_df['Unnamed: 0']
+del top10_df['spch']
+del top10_df['live']
+del top10_df['dB']
+del top10_df['bpm']
+del top10_df['dur']
+del top10_df['nrgy']
+
+
+
+
+
+top10_df.columns
+
+top10_df
+
+
+
+tens_df = top10_df[['title','artist','top genre','year','pop']]
+tens_df.sort_values(by=['pop'])
+tens_df = tens_df[tens_df.year == 2010]
+tens_df = tens_df.iloc[:5]
+tens_df
+
+
+
+
+
+eleven_df = top10_df[['title','artist','top genre','year','pop']]
+eleven_df.sort_values(by=['pop'])
+eleven_df = eleven_df[eleven_df.year == 2011]
+eleven_df = eleven_df.iloc[:5]
+eleven_df
+
+
+
+
+twelve_df = top10_df[['title','artist','top genre','year','pop']]
+twelve_df.sort_values(by=['pop'])
+twelve_df = twelve_df[twelve_df.year == 2012]
+twelve_df = twelve_df.iloc[:5]
+twelve_df
+
+
+
+
+
+thirteen_df = top10_df[['title','artist','top genre','year','pop']]
+thirteen_df.sort_values(by=['pop'])
+thirteen_df = thirteen_df[thirteen_df.year == 2013]
+thirteen_df = thirteen_df.iloc[:5]
+thirteen_df
+
+
+
+
+fourteen_df = top10_df[['title','artist','top genre','year','pop']]
+fourteen_df.sort_values(by=['pop'])
+fourteen_df = fourteen_df[fourteen_df.year == 2014]
+fourteen_df = fourteen_df.iloc[:5]
+fourteen_df
+
+
+
+
+
+fifteen_df = top10_df[['title','artist','top genre','year','pop']]
+fifteen_df.sort_values(by=['pop'])
+fifteen_df = fifteen_df[fifteen_df.year == 2015]
+fifteen_df = fifteen_df.iloc[:5]
+fifteen_df
+
+
+
+
+
+sixteen_df = top10_df[['title','artist','top genre','year','pop']]
+sixteen_df.sort_values(by=['pop'])
+sixteen_df = sixteen_df[sixteen_df.year == 2016]
+sixteen_df = sixteen_df.iloc[:5]
+sixteen_df
+
+
+
+
+
+seventeen_df = top10_df[['title','artist','top genre','year','pop']]
+seventeen_df.sort_values(by=['pop'])
+seventeen_df = seventeen_df[seventeen_df.year == 2017]
+seventeen_df = seventeen_df.iloc[:5]
+seventeen_df
+
+
+
+
+eighteen_df = top10_df[['title','artist','top genre','year','pop']]
+eighteen_df.sort_values(by=['pop'])
+eighteen_df = eighteen_df[eighteen_df.year == 2018]
+eighteen_df = eighteen_df.iloc[:5]
+eighteen_df
+
+
+
+
+
+nineteen_df = top10_df[['title','artist','top genre','year','pop']]
+nineteen_df.sort_values(by=['pop'])
+nineteen_df = nineteen_df[nineteen_df.year == 2019]
+nineteen_df = nineteen_df.iloc[:5]
+nineteen_df
+
+
+
+
+
+top10_df.loc[top10_df['artist'] == 'Ed Sheeran']
+
+
+
+
+
+top10_df.loc[top10_df['artist'] == 'Maroon 5']
+
+
+
+
+tens_values = tens_df['top genre']
+tens_pop = tens_df['pop']
+
+plt.xlim(60,90)
+plt.barh(tens_values, tens_pop, alpha =0.8)
+
+
+
+
+
+scatter_matrix(top10_df[['val','acous','pop']], figsize= (10,10), grid=True)
+f4 = plt.gcf()
+
+
+
+
+
+temp_list= [tens_df, eleven_df, twelve_df, thirteen_df,
+             fourteen_df, fifteen_df, sixteen_df, seventeen_df,
+             eighteen_df, nineteen_df]
+
+master_df = pd.concat(temp_list)
+master_df
+
+
+
+
+
+top_genre = master_df['top genre']
+top_pop = master_df['pop']
+
+plt.title("Genre Popularity")
+plt.xlabel('Popularity')
+plt.ylabel('Genre')
+plt.xlim(60,100)
+plt.barh(top_genre, top_pop, alpha =0.8, color=(0.5, 0.1, 0.5,0.6))
+
+
+
+
+
+f, ax = plt.subplots()
+ax.plot(top10_df['val'],top10_df['pop'], '.')
+plt.xlabel('Valence');
+plt.ylabel('Popularity');
+
+a1, b1 = np.polyfit(top10_df['val'],top10_df['pop'], 1)
+
+f, ax = plt.subplots()
+ax.plot(top10_df['acous'],top10_df['pop'], '.')
+plt.xlabel('Acousticness');
+plt.ylabel('Popularity');
+
+a1, b1 = np.polyfit(top10_df['acous'],top10_df['pop'], 1)
+
+
+
+
+
+f, ax = plt.subplots()
+ax.plot(top10_df['dnce'],top10_df['pop'], '.')
+plt.xlabel('Danceability');
+plt.ylabel('Popularity');
+
+a1, b1 = np.polyfit(top10_df['dnce'],top10_df['pop'], 1)
+
+
+
+
+
+top10_df.corr(method='pearson')
