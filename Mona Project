@@ -211,17 +211,17 @@ a1, b1 = np.polyfit(top10_df['dnce'],top10_df['pop'], 1)
 
 
 
-
+#Correlation comparison of between each of the values in the dataframe
 top10_df.corr(method='pearson')
 
+#Cleans and reassigns data to prepare for k means clustering 
 top10_df['val'].replace(' ', '')
 top10_df['pop'].replace(' ', '')
 
 temp_df = top10_df[['val','pop']]
-
 temp_df
 
-
+#K-means clustering that returns 3 clusters, with the inital data coming from the valence and popularity values. 
 kmeans = KMeans(n_clusters=3).fit(temp_df)
 centroids = kmeans.cluster_centers_
 print(centroids)
@@ -230,6 +230,7 @@ plt.scatter(temp_df['val'], temp_df['pop'], c= kmeans.labels_.astype(float), s=5
 plt.scatter(centroids[:, 0], centroids[:, 1], c='red', s=50)
 
 
+#Line graph that compares the values of valence, acousticness, and popularity over their genres
 ax = plt.gca()
 
 master_df.plot(kind='line',x='top genre',y='val', color='blue',ax=ax)
